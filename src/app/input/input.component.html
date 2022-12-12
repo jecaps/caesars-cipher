@@ -1,6 +1,6 @@
 <!-- <form class="example-form"> -->
 <mat-form-field class="example-full-width">
-  <mat-label>Favorite food</mat-label>
+  <mat-label>Shift Value</mat-label>
   <input matInput type="number" [(ngModel)]="shiftValue">
 </mat-form-field>
 
@@ -9,7 +9,9 @@
   <input matInput type="text" [(ngModel)]="message">
 </mat-form-field>
 
-<button (click)="encryptMessage()">+</button>
+<button (click)="encryptMessage()">Encrypt Message</button>
+<button (click)="decryptMessage()">Decrypt Message</button>
 
 <p>{{encryptedMessage}}</p>
+<p>{{decryptedMessage}}</p>
 <!-- </form> -->
