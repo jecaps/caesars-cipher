@@ -10,9 +10,22 @@ export class InputComponent {
   shiftValue: number = 0;
   message: string = '';
 
-  addNumber() {
-    this.shiftValue += 1;
-    console.log(this.message.split(''));
-    console.log(this.alphabet.indexOf('d'));
+  decryptedMessage: string = '';
+  encryptedMessage: string = '';
+
+  encryptMessage() {
+    let encryptedText: string[] = [];
+    this.message
+      .toLowerCase()
+      .split('')
+      .map((letter) => {
+        let letterIndex = this.alphabet.indexOf(letter) + this.shiftValue;
+        letterIndex >= this.alphabet.length
+          ? encryptedText.push(
+              this.alphabet[letterIndex - this.alphabet.length]
+            )
+          : encryptedText.push(this.alphabet[letterIndex]);
+        console.log((this.encryptedMessage = encryptedText.join('')));
+      });
   }
 }
