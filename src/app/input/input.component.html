@@ -1,23 +1,21 @@
-<div class="button-container">
+<div>
   <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [(ngModel)]="transformationType">
     <mat-button-toggle value="Decrypt">Decrypt</mat-button-toggle>
     <mat-button-toggle value="Encrypt">Encrypt</mat-button-toggle>
   </mat-button-toggle-group>
-</div>
 
-<mat-form-field class="example-full-width">
-  <mat-label>Shift Value</mat-label>
-  <input matInput type="number" [(ngModel)]="shiftValue">
-</mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Shift Value</mat-label>
+    <input matInput type="number" [(ngModel)]="shiftValue">
+  </mat-form-field>
 
-<mat-form-field class="example-full-width">
-  <mat-label>Message</mat-label>
-  <input matInput type="text" [(ngModel)]="message" placeholder="Write Message {{transformationType}}">
-</mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Message</mat-label>
+    <input matInput type="text" [(ngModel)]="message" placeholder="Write Message {{transformationType}}">
+  </mat-form-field>
 
-<div class="button-container">
   <button mat-raised-button color="primary" (click)="transformMessage(transformationType)">{{transformationType}}
     Message</button>
-</div>
 
-<p>{{transformedMessage}}</p>
+  <p>{{transformedMessage}}</p>
+</div>
