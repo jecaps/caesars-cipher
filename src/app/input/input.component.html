@@ -1,6 +1,6 @@
 <div>
   <mat-card class="card">
-    <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [(ngModel)]="transformationType">
+    <mat-button-toggle-group [(ngModel)]="transformationType">
       <mat-button-toggle value="Decrypt">Decrypt</mat-button-toggle>
       <mat-button-toggle value="Encrypt">Encrypt</mat-button-toggle>
     </mat-button-toggle-group>
@@ -12,9 +12,9 @@
 
     <app-shift-value-input [(shiftVal)]="shiftValue"></app-shift-value-input>
 
-    <mat-form-field class="example-full-width">
+    <mat-form-field class="input">
       <mat-label>Message</mat-label>
-      <input matInput type="text" [(ngModel)]="message" placeholder="Write Message {{transformationType}}">
+      <input matInput type="text" [(ngModel)]="message" placeholder="{{transformationType}}">
     </mat-form-field>
 
     <button mat-raised-button color="primary" (click)="transformMessage()">{{transformationType}}
