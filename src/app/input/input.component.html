@@ -1,25 +1,21 @@
 <div>
   <mat-card class="card">
-    <mat-button-toggle-group [(ngModel)]="transformationType">
+
+    <mat-button-toggle-group [(ngModel)]="transformationType" class="toggle-button-group">
       <mat-button-toggle value="Decrypt">Decrypt</mat-button-toggle>
       <mat-button-toggle value="Encrypt">Encrypt</mat-button-toggle>
     </mat-button-toggle-group>
-
-    <!-- <mat-form-field class="example-full-width">
-      <mat-label>Shift Value</mat-label>
-      <input matInput type="number" [(ngModel)]="shiftValue">
-    </mat-form-field> -->
 
     <app-shift-value-input [(shiftVal)]="shiftValue"></app-shift-value-input>
 
     <mat-form-field class="input">
       <mat-label>Message</mat-label>
-      <input matInput type="text" [(ngModel)]="message">
+      <input matInput type="text" [(ngModel)]="message" class="message">
     </mat-form-field>
 
-    <button mat-raised-button color="primary" (click)="transformMessage()">{{transformationType}}
+    <button class="transform-btn" mat-raised-button color="primary" (click)="transformMessage()">{{transformationType}}
       Message</button>
 
-    <p>{{transformedMessage}}</p>
+    <p class="output">{{output}}</p>
   </mat-card>
 </div>

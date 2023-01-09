@@ -1,4 +1,4 @@
-<mat-form-field>
+<mat-form-field class="input">
   <mat-label>Shift Value</mat-label>
-  <input matInput type="number" [(ngModel)]="shiftValue">
+  <input matInput type="number" #input min="1" max="26" [(ngModel)]="shiftValue" class="shift-value">
 </mat-form-field>

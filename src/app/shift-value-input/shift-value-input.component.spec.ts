@@ -8,9 +8,8 @@ describe('ShiftValueInputComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ShiftValueInputComponent ]
-    })
-    .compileComponents();
+      declarations: [ShiftValueInputComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ShiftValueInputComponent);
     component = fixture.componentInstance;

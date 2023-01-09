@@ -7,10 +7,11 @@ import { Component } from '@angular/core';
 })
 export class InputComponent {
   alphabet: string[] = [...'abcdefghijklmnopqrstuvwxyz'];
-  shiftValue: number = 0;
+  shiftValue!: number;
   message: string = '';
   transformationType: string = 'Encrypt';
-  transformedMessage: string = '';
+  output: string = '';
+  title = 'material-practice';
 
   transformMessage() {
     let transformedText: string[] = [];
@@ -32,15 +33,7 @@ export class InputComponent {
         } else {
           transformedText.push(copiedAlphabet[letterIndex]);
         }
-
-        // letter === ' '
-        //   ? transformedText.push(' ')
-        //   : letterIndex >= copiedAlphabet.length
-        // ? transformedText.push(
-        //     copiedAlphabet[letterIndex - copiedAlphabet.length]
-        //   )
-        //   : transformedText.push(copiedAlphabet[letterIndex]);
-        this.transformedMessage = transformedText.join('');
+        this.output = transformedText.join('');
       });
   }
 }
