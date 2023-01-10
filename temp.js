@@ -1,24 +1,58 @@
 const { By, Key, Builder } = require("selenium-webdriver");
+const { suite } = require("selenium-webdriver/testing");
 const assert = require("chai").assert;
 
-const example = async () => {
-  let driver = await new Builder().forBrowser("chrome").build();
+suite(function (env) {
+  describe("Caesar Ciphers", function () {
+    let driver;
 
-  await driver.get("http://localhost:4200/");
+    before(async function () {
+      driver = await new Builder().forBrowser("chrome").build();
+    });
 
-  await driver.findElement(By.className("shift-value")).sendKeys(3, Key.RETURN);
-  await driver
-    .findElement(By.className("message"))
-    .sendKeys("Hallo Zusammen", Key.RETURN);
-  await driver.findElement(By.className("transform-btn")).click();
+    after(async () => await driver.quit());
 
-  if (await driver.findElement(By.className("output")).isDisplayed()) {
-    let expextedText = "kdoor cxvdpphq";
-    let outputText = await driver.findElement(By.className("output")).getText();
-    assert.equal(outputText, "kdoor cxvdpphq");
-    console.log("TEST PASSED");
-  }
-  await driver.quit();
-};
+    it("should show the correct encrypted message", async () => {
+      await driver.get("http://localhost:4200/");
 
-example();
+      await driver
+        .findElement(By.className("shift-value"))
+        .sendKeys(3, Key.RETURN);
+      await driver
+        .findElement(By.className("message"))
+        .sendKeys("Hallo Zusammen", Key.RETURN);
+      await driver.findElement(By.className("transform-btn")).click();
+
+      if (await driver.findElement(By.className("output")).isDisplayed()) {
+        let expectedText = "kdoor cxvdpphq";
+        let outputText = await driver
+          .findElement(By.className("output"))
+          .getText();
+        assert.equal(outputText, expectedText);
+      }
+    });
+
+    it("should show the decrypted message", async () => {
+      await driver.get("http://localhost:4200/");
+
+      await driver
+        .findElement(By.xpath("//mat-button-toggle[@value='Decrypt']"))
+        .click();
+      await driver
+        .findElement(By.className("shift-value"))
+        .sendKeys(5, Key.RETURN);
+      await driver
+        .findElement(By.className("message"))
+        .sendKeys("Lzyjs Rtwljs", Key.RETURN);
+      await driver.findElement(By.className("transform-btn")).click();
+
+      if (await driver.findElement(By.className("output")).isDisplayed()) {
+        let expectedText = "guten morgen";
+        let outputText = await driver
+          .findElement(By.className("output"))
+          .getText();
+        assert.equal(outputText, expectedText);
+      }
+    });
+  });
+});
