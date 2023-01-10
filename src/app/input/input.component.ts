@@ -34,6 +34,7 @@ export class InputComponent {
           transformedText.push(copiedAlphabet[letterIndex]);
         }
         this.output = transformedText.join('');
+        this.message = '';
       });
   }
 }

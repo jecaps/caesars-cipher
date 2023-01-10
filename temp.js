@@ -1,9 +1,9 @@
-const { By, Key, Builder } = require("selenium-webdriver");
+const { By, Builder, locateWith } = require("selenium-webdriver");
 const { suite } = require("selenium-webdriver/testing");
 const assert = require("chai").assert;
 
 suite(function (env) {
-  describe("Caesar Ciphers", function () {
+  describe("Caesar Cipher", function () {
     let driver;
 
     before(async function () {
@@ -15,12 +15,10 @@ suite(function (env) {
     it("should show the correct encrypted message", async () => {
       await driver.get("http://localhost:4200/");
 
-      await driver
-        .findElement(By.className("shift-value"))
-        .sendKeys(3, Key.RETURN);
+      await driver.findElement(By.className("shift-value")).sendKeys(3);
       await driver
         .findElement(By.className("message"))
-        .sendKeys("Hallo Zusammen", Key.RETURN);
+        .sendKeys("Hallo Zusammen");
       await driver.findElement(By.className("transform-btn")).click();
 
       if (await driver.findElement(By.className("output")).isDisplayed()) {
@@ -38,12 +36,10 @@ suite(function (env) {
       await driver
         .findElement(By.xpath("//mat-button-toggle[@value='Decrypt']"))
         .click();
-      await driver
-        .findElement(By.className("shift-value"))
-        .sendKeys(5, Key.RETURN);
+      await driver.findElement(By.className("shift-value")).sendKeys(5);
       await driver
         .findElement(By.className("message"))
-        .sendKeys("Lzyjs Rtwljs", Key.RETURN);
+        .sendKeys("Lzyjs Rtwljs");
       await driver.findElement(By.className("transform-btn")).click();
 
       if (await driver.findElement(By.className("output")).isDisplayed()) {
@@ -53,6 +49,38 @@ suite(function (env) {
           .getText();
         assert.equal(outputText, expectedText);
       }
+    });
+
+    it("toggle buttons should be above the shift value input", async () => {
+      await driver.get("http://localhost:4200/");
+
+      let shiftValueField = driver.findElement(By.className("shift-value"));
+
+      await driver.findElement(
+        locateWith(By.className("toggle-button-group")).above(shiftValueField)
+      );
+    });
+
+    it("message input field should be below the shift value input", async () => {
+      await driver.get("http://localhost:4200/");
+
+      let shiftValueField = driver.findElement(By.className("shift-value"));
+
+      await driver.findElement(
+        locateWith(By.className("message")).below(shiftValueField)
+      );
+    });
+
+    it("message input field should be emptied when output is shown", async () => {
+      await driver.get("http://localhost:4200/");
+
+      await driver.findElement(By.className("shift-value")).sendKeys(3);
+
+      let messageField = driver.findElement(By.className("message"));
+      await messageField.sendKeys("Hallo Zusammen");
+      await driver.findElement(By.className("transform-btn")).click();
+
+      assert.equal("", await messageField.getAttribute("value"));
     });
   });
 });

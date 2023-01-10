@@ -13,9 +13,9 @@
       <input matInput type="text" [(ngModel)]="message" class="message">
     </mat-form-field>
 
-    <button class="transform-btn" mat-raised-button color="primary" (click)="transformMessage()">{{transformationType}}
+    <button class="transform-btn" mat-raised-button color="primary" (click)="transformMessage()">Transform
       Message</button>
 
-    <p class="output">{{output}}</p>
+    <p *ngIf="output" class="output">{{output}}</p>
   </mat-card>
 </div>
