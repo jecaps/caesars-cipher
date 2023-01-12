@@ -23,18 +23,20 @@ export class InputComponent {
       .toLowerCase()
       .split('')
       .map((letter) => {
-        let letterIndex = copiedAlphabet.indexOf(letter) + this.shiftValue;
-        if (letter === ' ') {
-          transformedText.push(' ');
-        } else if (letterIndex >= copiedAlphabet.length) {
-          transformedText.push(
-            copiedAlphabet[letterIndex - copiedAlphabet.length]
-          );
-        } else {
-          transformedText.push(copiedAlphabet[letterIndex]);
+        if (this.shiftValue > 0 && this.shiftValue < 26) {
+          let letterIndex = copiedAlphabet.indexOf(letter) + this.shiftValue;
+          if (letter === ' ') {
+            transformedText.push(' ');
+          } else if (letterIndex >= copiedAlphabet.length) {
+            transformedText.push(
+              copiedAlphabet[letterIndex - copiedAlphabet.length]
+            );
+          } else {
+            transformedText.push(copiedAlphabet[letterIndex]);
+          }
+          this.output = transformedText.join('');
+          this.message = '';
         }
-        this.output = transformedText.join('');
-        this.message = '';
       });
   }
 }
