@@ -10,7 +10,7 @@
 
     <mat-form-field class="input">
       <mat-label>Message</mat-label>
-      <textarea #input matInput maxlength="300" [(ngModel)]="message" class="message"></textarea>
+      <input #input matInput maxlength="300" [(ngModel)]="message" class="message" />
       <mat-hint align="end">{{input.value.length}}/300</mat-hint>
     </mat-form-field>
 
