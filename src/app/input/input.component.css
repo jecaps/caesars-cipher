@@ -1,6 +1,7 @@
 div {
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -14,8 +15,8 @@ div {
   padding: 1.2rem;
   border-radius: 1.5rem;
   width: 50%;
-}
-
-.input {
-  width: 100%;
+  min-width: 20rem !important;
+  max-width: 2rem !important;
+  min-height: 20rem !important;
+  max-height: 2rem !important;
 }
