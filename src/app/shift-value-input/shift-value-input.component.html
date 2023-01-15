@@ -1,5 +1,6 @@
-<p class="error-message" *ngIf="shiftValue <= 0 && !shiftValue">Please enter a shift value of 1 or more!</p>
-<p class="error-message" *ngIf="shiftValue > 26 && shiftValue">Value should not be more than 26!</p>
+<p class="error-message" id="error-below-one" *ngIf="shiftValue <= 0 && !shiftValue">Please enter a shift value of 1 or
+  more!</p>
+<p class="error-message" id="error-above-26" *ngIf="shiftValue > 26 && shiftValue">Value should not be more than 26!</p>
 <mat-form-field class="input" hideRequiredMarker>
   <mat-label>Shift Value</mat-label>
   <input matInput type="number" #input min="1" max="26" [(ngModel)]="shiftValue" class="shift-value" required>

@@ -1,3 +1,4 @@
+const { async } = require("rxjs");
 const { By, Builder, locateWith } = require("selenium-webdriver");
 const { suite } = require("selenium-webdriver/testing");
 const assert = require("chai").assert;
@@ -81,6 +82,18 @@ suite(function (env) {
       await driver.findElement(By.className("transform-btn")).click();
 
       assert.equal("", await messageField.getAttribute("value"));
+    });
+
+    it("should show error message for when shift value is less than 1", async () => {
+      await driver.get("http://localhost:4200/");
+      await driver.findElement(By.className("shift-value")).sendKeys(0);
+      await driver.findElement(By.id("error-below-one")).isDisplayed();
+    });
+
+    it("should show error message for when shift value is more than 26", async () => {
+      await driver.get("http://localhost:4200/");
+      await driver.findElement(By.className("shift-value")).sendKeys(52);
+      await driver.findElement(By.id("error-above-26")).isDisplayed();
     });
   });
 });
