@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-input',
@@ -12,6 +14,8 @@ export class InputComponent {
   transformationType: string = 'Encrypt';
   output: string = '';
   title = 'material-practice';
+
+  constructor(public matDialog: MatDialog) {}
 
   transformMessage() {
     let transformedText: string[] = [];
@@ -38,5 +42,11 @@ export class InputComponent {
           this.message = '';
         }
       });
+    this.matDialog.open(DialogComponent, {
+      data: {
+        output: this.output,
+        transformationType: this.transformMessage,
+      },
+    });
   }
 }

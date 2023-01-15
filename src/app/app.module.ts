@@ -10,10 +10,17 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
 import { ShiftValueInputComponent } from './shift-value-input/shift-value-input.component';
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
-  declarations: [AppComponent, InputComponent, ShiftValueInputComponent],
+  declarations: [
+    AppComponent,
+    InputComponent,
+    ShiftValueInputComponent,
+    DialogComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -23,8 +30,10 @@ import { ShiftValueInputComponent } from './shift-value-input/shift-value-input.
     MatButtonToggleModule,
     MatButtonModule,
     MatCardModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
+  entryComponents: [DialogComponent],
 })
 export class AppModule {}
