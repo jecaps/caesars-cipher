@@ -45,7 +45,8 @@ export class InputComponent {
     this.matDialog.open(DialogComponent, {
       data: {
         output: this.output,
-        transformationType: this.transformMessage,
+        transformationType: this.transformationType,
+        message: this.message,
       },
     });
   }
